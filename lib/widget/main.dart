@@ -2,15 +2,17 @@ import 'package:demo_01/widget/doubleCheckConfirmation.dart';
 import 'package:demo_01/widget/init.dart';
 import 'package:flutter/material.dart';
 
-class Main extends StatelessWidget {
-  const Main({
+class Build extends StatelessWidget {
+  const Build({
     super.key,
-    required this.appBar,
+    this.appBar,
     required this.body,
+    this.floatingActionButton,
   });
 
-  final AppBar appBar;
+  final AppBar? appBar;
   final Widget body;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class Main extends StatelessWidget {
             child: Scaffold(
       appBar: appBar,
       body: body,
+      floatingActionButton: floatingActionButton,
     )));
   }
 }

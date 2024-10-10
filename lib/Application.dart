@@ -27,12 +27,9 @@ class _ApplicationState extends State<Application> {
         splitScreenMode: true,
         builder: (context, child) {
           // 动态主题颜色
-          return DynamicColorBuilder(
-              builder: ((ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
-            lightColorScheme =
-                lightDynamic?.harmonized() ?? AppTheme.defaultLightColorScheme;
-            darkColorScheme =
-                darkDynamic?.harmonized() ?? AppTheme.defaultLightColorScheme;
+          return DynamicColorBuilder(builder: ((ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+            lightColorScheme = lightDynamic?.harmonized() ?? AppTheme.defaultLightColorScheme;
+            darkColorScheme = darkDynamic?.harmonized() ?? AppTheme.defaultLightColorScheme;
             return GetMaterialApp(
               // APP 配置
               title: "demo",

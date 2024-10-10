@@ -9,8 +9,7 @@ class DoubleCheckConfirmation extends StatefulWidget {
   const DoubleCheckConfirmation({super.key, required this.child});
 
   @override
-  State<DoubleCheckConfirmation> createState() =>
-      _DoubleCheckConfirmationState();
+  State<DoubleCheckConfirmation> createState() => _DoubleCheckConfirmationState();
 }
 
 class _DoubleCheckConfirmationState extends State<DoubleCheckConfirmation> {
@@ -23,9 +22,7 @@ class _DoubleCheckConfirmationState extends State<DoubleCheckConfirmation> {
       onPopInvoked: (bool didPop) {
         if (didPop) return;
         SmartDialog.showToast("再按一次退出");
-        if (lastPressedAt == null ||
-            DateTime.now().difference(lastPressedAt!) >
-                const Duration(seconds: 1)) {
+        if (lastPressedAt == null || DateTime.now().difference(lastPressedAt!) > const Duration(seconds: 1)) {
           // 两次点击间隔超过1秒则重新计时
           lastPressedAt = DateTime.now();
           return;

@@ -1,6 +1,6 @@
+import 'package:demo_01/pages/home/home.dart';
 import 'package:get/get.dart';
 
-import '../pages/main/main.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -11,7 +11,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.MAIN,
-      page: () => const Main(),
+      page: () => const Home(),
     ),
   ];
 }
