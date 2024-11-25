@@ -8,7 +8,8 @@ class HttpString {
     'Connection': 'keep-alive'
   };
   static const Map<String, String> cookies = {
-    'apikey': '0ab215a8b1977939201640fa14c66bab'
+    'apikey': '0ab215a8b1977939201640fa14c66bab',
+    'q':'哈利'
   };
   static const Duration connectTimeout = Duration(milliseconds: 12000);
   static const List<int> validateStatusCodes = [

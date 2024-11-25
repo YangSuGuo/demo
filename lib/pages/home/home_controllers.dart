@@ -9,20 +9,21 @@ class HomeController extends GetxController {
   RxString keyword = '哈利'.obs;
 
   RxInt count = 1.obs;
-  RxList<Subjects> subjectsList = <Subjects>[].obs;
+  RxList<Subject> subjectsList = <Subject>[].obs;
 
   @override
   void onInit() async {
     super.onInit();
     await search({
       "q": keyword.value,
+      'apikey': '0ab215a8b1977939201640fa14c66bab',
     });
   }
 
   Future search(Map<String, dynamic> q) async {
     var result = await Net.search(q);
-    subjectsList.value = result.subjects!;
-    count.value = result.count!;
+    subjectsList.value = result.subjects;
+    count.value = result.count;
     return result;
   }
 }

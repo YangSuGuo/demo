@@ -1,5 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:demo_01/widget/search_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -13,11 +14,15 @@ class RankedCardsList extends StatelessWidget {
     required this.datum,
   });
 
-  final Subjects datum;
+  final Subject datum;
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    List<String> casts = [];
+    for (var item in datum.casts) {
+      casts.add(item.name);
+    }
     return InkWell(
         onTap: () {},
         child: Padding(
@@ -28,9 +33,9 @@ class RankedCardsList extends StatelessWidget {
               children: [
                 Stack(children: [
                   NetworkImg(
-                    src: datum.images!.large,
-                    width: 210.w,
-                    height: 240.h,
+                    src: datum.images.small,
+                    width: 70,
+                    height: 100,
                   )
                 ]),
                 Gap(25.w),
@@ -40,16 +45,26 @@ class RankedCardsList extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Gap(8.h),
-                    AutoSizeText(
-                      datum.title! + datum.year!,
-                      // datum.nameCn ?? datum.name,
-                      maxLines: 1,
-                      minFontSize: 17,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.secondary),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.play_circle_outlined,
+                          color: Color(0xffFF5757),
+                        ),
+                        const Gap(3),
+                        Expanded(
+                            child: AutoSizeText(
+                          "${datum.title}(${datum.year})",
+                          maxLines: 1,
+                          minFontSize: 17,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black),
+                        )),
+                      ],
                     ),
+
                     // 星级评定
                     Gap(6.h),
                     Row(
@@ -57,11 +72,11 @@ class RankedCardsList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         AnimatedRatingStars(
-                          initialRating: datum.rating!.average!,
-                          maxRating: 10.0,
+                          initialRating: datum.rating.average! / 2,
+                          maxRating: 5.0,
                           minRating: 0.0,
                           starSize: 16.sp,
-                          filledColor: colorScheme.primary.withOpacity(0.8),
+                          filledColor: const Color(0xffFE9900),
                           displayRatingValue: false,
                           interactiveTooltips: true,
                           readOnly: true,
@@ -71,27 +86,32 @@ class RankedCardsList extends StatelessWidget {
                           customEmptyIcon: Icons.star_border,
                         ),
                         Gap(10.w),
-                        AutoSizeText("${datum.rating!.average!}",
+                        AutoSizeText("${datum.rating.average!}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: colorScheme.primary.withOpacity(0.6),
+                                color: const Color(0xffFE9900),
                                 fontSize: 28.sp)),
                       ],
                     ),
                     Gap(6.h),
-
                     // 简介
                     Padding(
                         padding: EdgeInsets.only(right: 25.w),
-                        child: AutoSizeText(
-                          "....",
-                          minFontSize: 13,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: colorScheme.secondary,
-                          ),
+                        child: Row(
+                          children: [
+                            SearchText(
+                                searchText:
+                                    datum.subtype == "movie" ? "影视" : "动画",
+                                isSelected: true,
+                                colors: const Color(0xffF7F7F7)),
+                            const Gap(5),
+                            Expanded(
+                                child: AutoSizeText(
+                              maxLines: 1,
+                              minFontSize: 14,
+                              "${datum.genres.join(" / ")} / ${casts.join(" / ")}",
+                            )),
+                          ],
                         )),
                   ],
                 ))

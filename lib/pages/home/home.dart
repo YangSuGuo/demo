@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:demo_01/widget/ranked_cards_list.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -67,16 +68,9 @@ class _HomeState extends State<Home> {
                     padding: EdgeInsets.zero,
                       itemCount: controller.count.value,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          padding: const EdgeInsets.only(top: 15),
-                          color: Colors.amber,
-                          child: Text(
-                            "controller.subjectsList[index].title!",
-                          ),
-                        );
-                        /*return RankedCardsList(
+                        return RankedCardsList(
                           datum: controller.subjectsList[index],
-                        );*/
+                        );
                       })))
             ],
           )),
