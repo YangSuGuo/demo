@@ -33,7 +33,7 @@ class RankedCardsList extends StatelessWidget {
               children: [
                 Stack(children: [
                   NetworkImg(
-                    src: datum.images.small,
+                    src: "https://images.weserv.nl/?url=${datum.images.small}",
                     width: 70,
                     height: 100,
                   )
